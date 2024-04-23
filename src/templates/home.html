@@ -1,0 +1,17 @@
+{% set active_page = "Tasks" %}
+
+{% extends "base.html" %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename = '/styles/tasks.css') }}">
+{% endblock %}
+
+{% block body %}
+<div id="tasks_body">
+test
+</div>
+{% endblock %}
