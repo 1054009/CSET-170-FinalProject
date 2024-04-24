@@ -15,7 +15,9 @@ def login():
 			)
 
 		if validate_login(email_address, password):
-			if not get_account_status(user_id):
+			account_type = get_account_type(user_id)
+
+			if not get_account_status(user_id) and account_type == "customer":
 				return render_template(
 				"login.html",
 				no_navbar = True,
@@ -24,7 +26,6 @@ def login():
 			session["user_id"] = user_id
 			session["email_address"] = email_address
 
-			account_type = get_account_type(user_id)
 			session["account_type"] = account_type
 
 			session["admin_id"] = get_admin_id(user_id)
