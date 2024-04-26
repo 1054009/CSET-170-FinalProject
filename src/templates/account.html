@@ -76,12 +76,12 @@
 
 	{% elif account_type == "customer" %}
 		<div class="account_info">
-			{{ account[0].username }}<br>
-			First Name: {{ account[0].first_name }}<br>
-			Last Name: {{ account[0].last_name }}<br>
-			SSN: {{ account[0].ssn }}<br>
-			Email Address: {{ account[0].email_address }}<br>
-			Phone Number: {{ account[0].phone_number }}<br>
+			Username: {{ account.username }}<br>
+			First Name: {{ account.first_name }}<br>
+			Last Name: {{ account.last_name }}<br>
+			SSN: {{ account.ssn }}<br>
+			Email Address: {{ account.email_address }}<br>
+			Phone Number: {{ account.phone_number }}<br>
 		</div>
 	{% endif %}
 </div>
