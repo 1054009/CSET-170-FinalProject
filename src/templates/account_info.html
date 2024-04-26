@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}
+	View Account {{ id }}
+{% endblock %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+	{% if account_type == "admin" %}
+		<div class="account_info">
+			Username: {{ account.username }}<br>
+			First Name: {{ account.first_name }}<br>
+			Last Name: {{ account.last_name }}<br>
+			SSN: {{ account.ssn }}<br>
+			Email Address: {{ account.email_address }}<br>
+			Phone Number: {{ account.phone_number }}<br>
+		</div>
+
+		<form action="/accounts/{{ id }}" method="POST">
+			<input type="submit" value="Approve">
+		</form>
+	{% endif %}
+{% endblock %}
