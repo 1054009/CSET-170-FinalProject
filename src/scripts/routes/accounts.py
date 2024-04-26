@@ -28,3 +28,20 @@ def view_accounts():
 			account_type = session.get("account_type"),
 			account = account
 		)
+
+@app.route("/accounts/<id>")
+def view_account_info(id):
+	if not validate_session(session):
+		destroy_session(session)
+		return redirect("/login")
+
+	account = get_user_info(id)[0]
+
+	return render_template(
+		"account_info.html",
+		message = None,
+		id = id,
+		account_info_type = get_account_type(id),
+		account_type = session.get("account_type"),
+		account = account
+	)
