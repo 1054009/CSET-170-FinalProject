@@ -23,6 +23,33 @@ def user_exists(email_address):
 
 	return user[0].id
 
+def get_email_address(user_id):
+	"""
+	:param int user_id:
+
+	:return:
+		The email address if the user account exists
+
+		False otherwise
+
+	:rtype:
+		string if the user_id exists
+
+		bool otherwise
+
+	"""
+
+	email = get_query_rows(f"""
+		select `email_address`
+		from `users`
+		where `id` = {user_id}
+	""")
+
+	if len(email) < 1:
+		return False
+
+	return email[0].email_address
+
 def get_admin_id(user_id):
 	"""
 	:param int user_id:
@@ -128,6 +155,8 @@ def approve_customer(customer_id):
 		set `is_approved` = 1
 		where `id` = {customer_id};
 	""")
+
+	sql.commit()
 
 def validate_login(email_address, password):
 	"""
