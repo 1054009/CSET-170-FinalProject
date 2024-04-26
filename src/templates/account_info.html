@@ -23,8 +23,12 @@
 			Phone Number: {{ account.phone_number }}<br>
 		</div>
 
-		<form action="/accounts/{{ id }}" method="POST">
-			<input type="submit" value="Approve">
-		</form>
+		{% if account_info_type == "customer" %}
+			<form action="/accounts/{{ id }}" method="POST">
+				<input type="submit" value="Approve">
+			</form>
+		{% endif %}
+
 	{% endif %}
+
 {% endblock %}
