@@ -184,6 +184,13 @@ def set_account_num(user_id):
 
 	sql.commit()
 
+def get_account_num(user_id):
+	return get_query_rows(f"""
+		select `account_num`
+		from `accounts`
+		where `user_id` = {user_id}
+	""")
+
 def approve_customer(customer_id):
 	run_query(f"""
 		update `customers`
