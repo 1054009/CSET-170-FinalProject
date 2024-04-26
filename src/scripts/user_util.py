@@ -149,6 +149,41 @@ def get_user_info(user_id):
 		where `id` = {user_id}
 	""")
 
+def generate_account_num():
+	num = ""
+
+	for i in range(10):
+		num += str(random.randint(0, 9))
+
+	return num
+
+def set_account_num(user_id):
+	num = generate_account_num()
+
+	# Handle unique account_num in `accounts`
+	existing_nums = get_query_rows(f"select `account_num` from `accounts`")
+
+	nums_list = []
+
+	for num_dict in existing_nums:
+		nums_list.append(num_dict.get("account_num"))
+
+	while num in nums_list:
+		num = generate_account_num()
+
+	# Set up account
+	run_query(f"""
+		insert into `accounts`
+		values(
+		   	null,
+		   	'{num}',
+			{user_id},
+			0.00
+		);
+	""")
+
+	sql.commit()
+
 def approve_customer(customer_id):
 	run_query(f"""
 		update `customers`
