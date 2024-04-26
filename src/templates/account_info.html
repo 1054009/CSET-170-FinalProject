@@ -9,7 +9,11 @@
 {% endblock %}
 
 {% block body %}
-	{% if account_type == "admin" %}
+	{% if message %}
+		<h2>{{ message }}</h2>
+	{% endif %}
+
+	{% if account and account_type == "admin" %}
 		<div class="account_info">
 			Username: {{ account.username }}<br>
 			First Name: {{ account.first_name }}<br>
