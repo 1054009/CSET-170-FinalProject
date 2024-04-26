@@ -184,12 +184,24 @@ def set_account_num(user_id):
 
 	sql.commit()
 
-def get_account_num(user_id):
+def get_account_num(user_id, account = 0):
+	"""
+	:param int user_id:
+
+	:param int account: A sequential number of the amount of accounts the user has
+
+		Example: account = 0 --> Finds the first account number of the user_id
+
+	:return:
+		The account number
+
+	:rtype: str
+	"""
 	return get_query_rows(f"""
 		select `account_num`
 		from `accounts`
 		where `user_id` = {user_id}
-	""")
+	""")[account].account_num
 
 def approve_customer(customer_id):
 	run_query(f"""
