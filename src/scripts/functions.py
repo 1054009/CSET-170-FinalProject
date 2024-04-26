@@ -19,6 +19,10 @@ def get_data(table, page = 1, per_page = 10):
 
 	count = run_query(f"select count(*) from `{table}`").first()[0]
 
+	# Handle no data in table
+	if count < 1:
+		return [], page, per_page, 1, 1
+
 	min_page = 1
 	max_page = math.ceil(count / per_page)
 
