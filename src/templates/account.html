@@ -69,14 +69,14 @@
 		<br />
 
 		{% for account in accounts %}
-			<div class="account_info">
+			<div class="account_info" onclick="set_top('accounts/{{ account.id }}')">
 				{{ account.username }}
 			</div>
 		{% endfor %}
 
 	{% elif account_type == "customer" %}
 		<div class="account_info">
-			Username: {{ account.username }}<br>
+			Username:{{ account.username }}<br>
 			First Name: {{ account.first_name }}<br>
 			Last Name: {{ account.last_name }}<br>
 			SSN: {{ account.ssn }}<br>
