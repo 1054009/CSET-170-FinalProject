@@ -122,6 +122,13 @@ def get_user_info(user_id):
 		where `id` = {user_id}
 	""")
 
+def approve_customer(customer_id):
+	run_query(f"""
+		update `customers`
+		set `is_approved` = 1
+		where `id` = {customer_id};
+	""")
+
 def validate_login(email_address, password):
 	"""
 	:param str email_address:
