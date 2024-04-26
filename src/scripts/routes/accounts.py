@@ -79,6 +79,8 @@ def approve_account(id):
 
 	approve_customer(customer_id)
 
+	set_account_num(id)
+
 	return render_template(
 		"account_info.html",
 		message = f"User {id} has been approved",
