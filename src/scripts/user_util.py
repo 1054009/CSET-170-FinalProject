@@ -116,6 +116,12 @@ def get_account_status(user_id):
 
 	return status[0].is_approved
 
+def get_user_info(user_id):
+	return get_query_rows(f"""
+		select * from `users`
+		where `id` = {user_id}
+	""")
+
 def validate_login(email_address, password):
 	"""
 	:param str email_address:

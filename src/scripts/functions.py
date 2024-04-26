@@ -31,9 +31,3 @@ def get_data(table, page = 1, per_page = 10):
 	data = get_query_rows(f"select * from `{table}` limit {per_page} offset {(page - 1) * per_page}")
 
 	return data, page, per_page, min_page, max_page
-
-def get_user_info(user_id):
-	return get_query_rows(f"""
-		select * from `users`
-		where `id` = {user_id}
-	""")
