@@ -21,10 +21,7 @@ def view_accounts():
 		)
 
 	elif session.get("account_type") == "customer":
-		account = get_query_rows(f"""
-			select * from `users`
-			where `id` = {session.get("user_id")}
-		""")
+		account = get_user_info(session.get("user_id"))[0]
 
 		return render_template(
 			"account.html",
