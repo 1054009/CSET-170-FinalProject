@@ -56,6 +56,13 @@ def send_money():
 	amount = float(request.form.get("amount"))
 	description = request.form.get("description")
 
+	# Check if receiver account number exists in accounts table
+	if not account_exists(receiver_account_num):
+		return render_template(
+			"transaction_send.html",
+			message = f"Account {receiver_account_num} does not exist"
+		)
+
 	# Sender transaction
 	sender_account_num = session.get("account_num")
 	make_transaction(sender_account_num, -amount, "sent", description, "", receiver_account_num)
