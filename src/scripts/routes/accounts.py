@@ -23,10 +23,13 @@ def view_accounts():
 	elif session.get("account_type") == "customer":
 		account = get_user_info(session.get("user_id"))[0]
 
+		account_num = get_account_num(session.get("user_id"))
+
 		return render_template(
 			"account.html",
 			account_type = session.get("account_type"),
-			account = account
+			account = account,
+			account_num = account_num
 		)
 
 @app.route("/accounts/<id>")
