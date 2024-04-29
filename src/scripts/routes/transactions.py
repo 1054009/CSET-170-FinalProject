@@ -63,8 +63,16 @@ def send_money():
 			message = f"Account {receiver_account_num} does not exist"
 		)
 
-	# Sender transaction
+	# Check if sending to self
 	sender_account_num = session.get("account_num")
+
+	if receiver_account_num == sender_account_num:
+		return render_template(
+			"transaction_send.html",
+			message = f"You cannot send money to yourself. Please deposit money"
+		)
+
+	# Sender transaction
 	make_transaction(sender_account_num, -amount, "sent", description, "", receiver_account_num)
 
 	# Receiver transaction
