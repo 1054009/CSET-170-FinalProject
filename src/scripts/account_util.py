@@ -62,3 +62,27 @@ def account_exists(account_num):
 				where `account_num` = '{account_num}'
 			) as `exists`;
 	""")[0].exists
+
+def get_account_balance(account_num):
+	"""
+	:param str account_num:
+
+	:return:
+		The balance if the account exists
+
+		False otherwise
+
+	:rtype:
+		float if the account exists
+
+		boolean otherwise
+	"""
+
+	if not account_exists(account_num):
+		return False
+
+	return get_query_rows(f"""
+		select `balance`
+		from `accounts`
+		where `account_num` = '{account_num}';
+	""")[0].balance
