@@ -46,4 +46,27 @@ run_query("""
 	);
 """)
 
+run_query("""
+	insert into `users` values
+	(
+		NULL,
+		'customer2',
+		'Customer2',
+		'Account',
+		'1234567890',
+		'c2@c.c',
+		'1234567890',
+		'2e7d2c03a9507ae265ecf5b5356885a53393a2029d241394997265a1a25aefc6'
+	);
+""")
+
+run_query("""
+	insert into `customers` values
+	(
+		NULL,
+		3,
+		0
+	);
+""")
+
 sql.commit()
