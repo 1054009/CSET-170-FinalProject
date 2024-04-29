@@ -36,7 +36,7 @@ create table `accounts`
 	`id` int unsigned auto_increment,
 	`account_num` varchar(10) not null,
 	`user_id` int unsigned not null,
-	`balance` double default 0.00,
+	`balance` float(23, 2) default 0.00,
 
 	primary key (`id`),
 	foreign key (`user_id`) references `users` (`id`) on delete cascade on update restrict,
@@ -48,7 +48,7 @@ create table `transactions`
 	`id` int unsigned auto_increment,
 	`account_num` varchar(10) not null,
 	`time` datetime not null,
-	`amount` double not null,
+	`amount` float(23, 2) not null,
 	`transaction_type` enum("added", "sent", "received") not null,
 	`description` varchar(255),
 	`sender` varchar(10),
