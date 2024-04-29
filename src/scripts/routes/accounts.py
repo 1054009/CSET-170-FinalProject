@@ -51,6 +51,10 @@ def view_account_info(id):
 
 @app.route("/accounts/<id>", methods = [ "POST" ])
 def approve_account(id):
+	if not validate_session(session):
+		destroy_session(session)
+		return redirect("/login")
+
 	# Account does not exist
 	email_address = get_email_address(id)
 
