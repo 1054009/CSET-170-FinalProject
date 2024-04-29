@@ -51,6 +51,7 @@ create table `transactions`
 	`amount` double not null,
 	`transaction_type` enum("added", "sent", "received") not null,
 	`description` varchar(255),
+	`sender` varchar(10),
 	`recipient` varchar(64),
 
 	primary key (`id`),

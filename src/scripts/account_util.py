@@ -1,13 +1,19 @@
-def make_transaction(account_num, amount, type, description, recipient):
+def make_transaction(account_num, amount, type, description, sender, recipient):
 	if not description:
 		description = "null"
 	else:
 		description = f"'{description}'"
 
+	if not sender:
+		sender = "null"
+	else:
+		sender = f"'{sender}'"
+
 	if not recipient:
 		recipient = "null"
 	else:
 		recipient = f"'{recipient}'"
+
 
 	run_query(f"""
 		insert into `transactions`
@@ -18,6 +24,7 @@ def make_transaction(account_num, amount, type, description, recipient):
 			{amount},
 			'{type}',
 			{description},
+			{sender},
 			{recipient}
 		);
 	""")
