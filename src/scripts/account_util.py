@@ -41,3 +41,24 @@ def update_balance(account_num, amount):
 	""")
 
 	sql.commit()
+
+def account_exists(account_num):
+	"""
+	:param str account_num:
+
+	:return:
+		1 if the account_num exists in accounts table
+
+		0 otherwise
+
+	:rtype: int
+	"""
+
+	return get_query_rows(f"""
+		select exists
+			(
+				select `account_num`
+				from `accounts`
+				where `account_num` = '{account_num}'
+			) as `exists`;
+	""")[0].exists
