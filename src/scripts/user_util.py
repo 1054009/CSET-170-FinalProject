@@ -197,6 +197,8 @@ def get_account_num(user_id, account = 0):
 
 	:rtype: str
 	"""
+
+	# TODO: handle if user_id does not exist in accounts table
 	return get_query_rows(f"""
 		select `account_num`
 		from `accounts`
