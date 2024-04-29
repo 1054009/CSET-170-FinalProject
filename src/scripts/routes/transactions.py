@@ -72,6 +72,15 @@ def send_money():
 			message = f"You cannot send money to yourself. Please deposit money"
 		)
 
+	# Check if there is sufficient balance
+	sender_account_balance = get_account_balance(sender_account_num)
+
+	if sender_account_balance < amount:
+		return render_template(
+			"transaction_send.html",
+			message = f"You do not have enough balance for this transaction. Your balance is ${sender_account_balance} "
+		)
+
 	# Sender transaction
 	make_transaction(sender_account_num, -amount, "sent", description, "", receiver_account_num)
 
