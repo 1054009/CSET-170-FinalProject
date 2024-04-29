@@ -16,6 +16,12 @@ def deposit():
 	session["expiration_date"] = expiration_date
 	session["ccv"] = ccv
 
+	# Add transaction
+	account_num = get_account_num(session.get("user_id"))
+
+	make_transaction(account_num, amount, "added", description, "")
+	update_balance(account_num, amount)
+
 	return render_template(
 		"card_input.html",
 		message = f"${amount} deposited",
