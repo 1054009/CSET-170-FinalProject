@@ -9,14 +9,29 @@
 {% endblock %}
 
 {% block body %}
-{% if message %}
-	{{ message }}
-{% endif %}
-<form action="/transactions/add" method="POST">
-	<input type="number" name="card_number" placeholder="Card Number" required><br>
-	<input type="number" name="expiration_date" placeholder="MMYY" required><br>
-	<input type="number" name="ccv" placeholder="CCV" required><br>
-	<input type="number" name="amount" placeholder="Amount" required><br>
-	<input type="submit" value="Deposit">
-</form>
+	{% if message %}
+		{{ message }}
+	{% endif %}
+	<form action="/transactions/add" method="POST">
+		{% if not card_number %}
+			<input type="number" name="card_number" placeholder="Card Number" required><br>
+		{% else %}
+			<input type="number" name="card_number" value="{{ card_number }}" placeholder="Card Number" required><br>
+		{% endif %}
+
+		{% if not expiration_date %}
+			<input type="number" name="expiration_date" placeholder="MMYY" required><br>
+		{% else %}
+			<input type="number" name="expiration_date" value="{{ expiration_date }}" placeholder="MMYY" required><br>
+		{% endif %}
+
+		{% if not ccv %}
+			<input type="number" name="ccv" placeholder="CCV" required><br>
+		{% else %}
+			<input type="number" name="ccv" value="{{ ccv }}" placeholder="CCV" required><br>
+		{% endif %}
+
+		<input type="number" name="amount" placeholder="Amount" required><br>
+		<input type="submit" value="Deposit">
+	</form>
 {% endblock %}
