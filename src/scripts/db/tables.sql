@@ -46,7 +46,7 @@ create table `accounts`
 create table `transactions`
 (
 	`id` int unsigned auto_increment,
-	`account_id` int unsigned not null,
+	`account_num` varchar(10) not null,
 	`time` datetime not null,
 	`amount` double not null,
 	`transaction_type` enum("added", "sent", "received") not null,
@@ -54,5 +54,5 @@ create table `transactions`
 	`recipient` varchar(64),
 
 	primary key (`id`),
-	foreign key (`account_id`) references `accounts` (`id`) on delete cascade on update restrict
+	foreign key (`account_num`) references `accounts` (`account_num`) on delete cascade on update restrict
 );
