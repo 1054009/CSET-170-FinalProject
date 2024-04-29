@@ -31,3 +31,35 @@ def get_data(table, page = 1, per_page = 10):
 	data = get_query_rows(f"select * from `{table}` limit {per_page} offset {(page - 1) * per_page}")
 
 	return data, page, per_page, min_page, max_page
+
+def is_price(price):
+	"""
+	:param str price:
+
+	:return:
+		True if price is represented as a float
+
+		False otherwise
+
+	:rtype: bool
+	"""
+
+	try:
+		float(price)
+		return True
+
+	except ValueError:
+		return False
+
+def pricefy(price):
+	"""
+	:param str or float price:
+
+	:return: price with 2 decimal points
+
+	:rtype: str
+	"""
+	if not is_price:
+		return
+
+	return f"{float(price) : 0.2f}"
