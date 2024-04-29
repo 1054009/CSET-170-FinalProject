@@ -31,7 +31,7 @@ def deposit():
 
 	return render_template(
 		"card_input.html",
-		message = f"${amount} deposited",
+		message = f"${pricefy(amount)} deposited",
 		card_number = session.get("card_number"),
 		expiration_date = session.get("expiration_date"),
 		ccv = session.get("ccv")
@@ -78,7 +78,7 @@ def send_money():
 	if sender_account_balance < amount:
 		return render_template(
 			"transaction_send.html",
-			message = f"You do not have enough balance for this transaction. Your balance is ${sender_account_balance} "
+			message = f"You do not have enough balance for this transaction. Your balance is ${pricefy(sender_account_balance)}"
 		)
 
 	# Sender transaction
@@ -89,5 +89,5 @@ def send_money():
 
 	return render_template(
 		"transaction_send.html",
-		message = f"${amount} has been transferred to {receiver_account_num}"
+		message = f"${pricefy(amount)} has been transferred to {receiver_account_num}"
 	)
