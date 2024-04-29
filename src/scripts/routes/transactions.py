@@ -36,3 +36,34 @@ def deposit():
 		expiration_date = session.get("expiration_date"),
 		ccv = session.get("ccv")
 	)
+
+@app.route("/transactions/send")
+def view_transaction_send_form():
+	if not validate_session(session):
+		destroy_session(session)
+		return redirect("/login")
+
+	return render_template("transaction_send.html")
+
+@app.route("/transactions/send", methods = [ "POST" ])
+def send_money():
+	if not validate_session(session):
+		destroy_session(session)
+		return redirect("/login")
+
+	# Get data from form
+	receiver_account_num = request.form.get("receiver_account_num")
+	amount = float(request.form.get("amount"))
+	description = request.form.get("description")
+
+	# Sender transaction
+	sender_account_num = session.get("account_num")
+	make_transaction(sender_account_num, -amount, "sent", description, "", receiver_account_num)
+
+	# Receiver transaction
+	make_transaction(receiver_account_num, amount, "received", description, sender_account_num, "")
+
+	return render_template(
+		"transaction_send.html",
+		message = f"${amount} has been transferred to {receiver_account_num}"
+	)

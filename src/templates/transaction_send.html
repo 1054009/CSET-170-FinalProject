@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}
+	Send
+{% endblock %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+	{% if message %}
+		{{ message }}
+	{% endif %}
+
+	<form action="/transactions/send" method="POST">
+		<input type="number" name="receiver_account_num" placeholder="Account Number of Receiver"><br>
+		<input type="number" name="amount" placeholder="Amount"><br>
+		<textarea name="description" id="" cols="30" rows="10" placeholder="Optional description"></textarea><br>
+
+		<input type="submit" value="Send">
+	</form>
+{% endblock %}
