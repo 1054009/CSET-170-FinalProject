@@ -25,10 +25,10 @@ def deposit():
 	session["ccv"] = ccv
 
 	# Add transaction
-	account_num = get_account_num(session.get("user_id"))
+	session["account_num"] = get_account_num(session.get("user_id"))
 
-	make_transaction(account_num, amount, "added", description, "")
-	update_balance(account_num, amount)
+	make_transaction(session.get("account_num"), amount, "added", description, "")
+	update_balance(session.get("account_num"), amount)
 
 	return render_template(
 		"card_input.html",
