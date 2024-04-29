@@ -49,7 +49,8 @@ create table `transactions`
 	`account_id` int unsigned not null,
 	`time` datetime not null,
 	`amount` double not null,
-	`transaction_type` enum("added", "sent", "received"),
+	`transaction_type` enum("added", "sent", "received") not null,
+	`description` varchar(255),
 	`recipient` varchar(64),
 
 	primary key (`id`),
