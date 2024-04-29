@@ -1,4 +1,4 @@
-def make_transaction(account_id, amount, type, description, recipient):
+def make_transaction(account_num, amount, type, description, recipient):
 	if not description:
 		description = "null"
 	else:
@@ -13,7 +13,7 @@ def make_transaction(account_id, amount, type, description, recipient):
 		insert into `transactions`
 		values(
 			null,
-			'{account_id}',
+			'{account_num}',
 			now(),
 			{amount},
 			'{type}',
