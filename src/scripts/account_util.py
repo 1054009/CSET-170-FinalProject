@@ -24,6 +24,8 @@ def make_transaction(account_num, amount, type, description, recipient):
 
 	sql.commit()
 
+	update_balance(account_num, amount)
+
 def update_balance(account_num, amount):
 	run_query(f"""
 		update `accounts`
