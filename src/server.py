@@ -50,6 +50,7 @@ load_file("./scripts/user_util.py")
 load_file("./scripts/functions.py")
 load_file("./scripts/routes.py")
 load_file("./scripts/db_init.py")
+load_file("./scripts/account_util.py")
 
 # Brap you
 if __name__ == "__main__":
