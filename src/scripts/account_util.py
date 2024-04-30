@@ -14,7 +14,6 @@ def make_transaction(account_num, amount, type, description, sender, recipient):
 	else:
 		recipient = f"'{recipient}'"
 
-
 	run_query(f"""
 		insert into `transactions`
 		values(
@@ -81,8 +80,8 @@ def get_account_balance(account_num):
 	if not account_exists(account_num):
 		return False
 
-	return get_query_rows(f"""
+	return float(get_query_rows(f"""
 		select `balance`
 		from `accounts`
 		where `account_num` = '{account_num}';
-	""")[0].balance
+	""")[0].balance)
