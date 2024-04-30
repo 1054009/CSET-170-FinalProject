@@ -14,6 +14,8 @@ def make_transaction(account_num, amount, type, description, sender, recipient):
 	else:
 		recipient = f"'{recipient}'"
 
+	new_balance = get_account_balance(account_num) + float(amount)
+
 	run_query(f"""
 		insert into `transactions`
 		values(
@@ -24,7 +26,8 @@ def make_transaction(account_num, amount, type, description, sender, recipient):
 			'{type}',
 			{description},
 			{sender},
-			{recipient}
+			{recipient},
+			{new_balance}
 		);
 	""")
 
