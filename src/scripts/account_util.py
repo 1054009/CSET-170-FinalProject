@@ -100,7 +100,7 @@ def get_transactions(account_num, page = 1, per_page = 10):
 	per_page = get_int(per_page, 10, 10)
 
 	count = get_query_rows(f"""
-		select count(*)
+		select count(*) as `count`
 		from `transactions`
 		where `account_num` = '{account_num}';
 	""")[0].count
