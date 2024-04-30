@@ -1,3 +1,23 @@
+@app.route("/transactions/")
+def view_transactions():
+	if not validate_session(session):
+		destroy_session(session)
+		return redirect("/login")
+
+	page = request.args.get("page")
+	per_page = request.args.get("per_page")
+
+	transactions, page, per_page, min_page, max_page = get_transactions(session.get("account_num"), page, per_page)
+
+	return render_template(
+		"log.html",
+		transactions = transactions,
+		page = page,
+		per_page = per_page,
+		min_page = min_page,
+		max_page = max_page
+	)
+
 @app.route("/transactions/add")
 def view_deposit_form():
 	if not validate_session(session):
