@@ -88,3 +88,38 @@ def get_account_balance(account_num):
 		from `accounts`
 		where `account_num` = '{account_num}';
 	""")[0].balance)
+
+def get_transactions(account_num, page = 1, per_page = 10):
+	"""
+	:param str account_num:
+	:param int page:
+	:param int per_page:
+	"""
+
+	page = get_int(page, 1, 1)
+	per_page = get_int(per_page, 10, 10)
+
+	count = get_query_rows(f"""
+		select count(*)
+		from `transactions`
+		where `account_num` = '{account_num}';
+	""")[0].count
+
+	# Handle no data in table
+	if count < 1:
+		return [], page, per_page, 1, 1
+
+	min_page = 1
+	max_page = math.ceil(count / per_page)
+
+	page = clamp(page, min_page, max_page)
+
+	transactions = get_query_rows(f"""
+		select *
+		from `transactions`
+		where `account_num` = '{account_num}'
+		limit {per_page}
+		offset {(page - 1) * per_page};
+	""")
+
+	return transactions, page, per_page, min_page, max_page
