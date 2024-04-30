@@ -11,7 +11,21 @@ Home
 {% endblock %}
 
 {% block body %}
+<script type="text/javascript" src="{{ url_for('static', filename = 'js/nav.js') }}"></script>
+
+{% if account_type == "customer" %}
 <div id="tasks_body">
-test
+	<div class="redirect_button" onclick="set_top('transactions/')">
+		View transactions
+	</div>
+
+	<div class="redirect_button" onclick="set_top('transactions/add')">
+		Deposit Money
+	</div>
+
+	<div class="redirect_button" onclick="set_top('transactions/send')">
+		Send Money
+	</div>
 </div>
+{% endif %}
 {% endblock %}
