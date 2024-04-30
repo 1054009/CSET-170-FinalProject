@@ -53,6 +53,7 @@ create table `transactions`
 	`description` varchar(255),
 	`sender` varchar(10),
 	`recipient` varchar(64),
+	`new_balance` float(23,2) default 0.00
 
 	primary key (`id`),
 	foreign key (`account_num`) references `accounts` (`account_num`) on delete cascade on update restrict
