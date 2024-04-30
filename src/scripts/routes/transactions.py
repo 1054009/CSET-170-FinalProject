@@ -25,8 +25,6 @@ def deposit():
 	session["ccv"] = ccv
 
 	# Add transaction
-	session["account_num"] = get_account_num(session.get("user_id"))
-
 	make_transaction(session.get("account_num"), amount, "added", description, "", "")
 
 	return render_template(

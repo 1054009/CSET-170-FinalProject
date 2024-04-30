@@ -28,6 +28,9 @@ def login():
 
 			session["account_type"] = account_type
 
+			if account_type == "customer":
+				session["account_num"] = get_account_num(session.get("user_id"))
+
 			session["admin_id"] = get_admin_id(user_id)
 			session["customer_id"] = get_customer_id(user_id)
 
